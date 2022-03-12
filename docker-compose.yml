@@ -1,0 +1,24 @@
+version: "1.0"
+services:
+  app:
+    container_name: app-nekoverse-breeding
+
+  redis:
+    container_name: redis-nekoverse-breeding
+    image: redis
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning
+    networks:
+      - nekoverse-breeding-network
+    volumes:
+      - nekoverse-breeding-cache:/data
+  
+  networks:
+    nekoverse-breeding-network:
+      driver: bridge
+
+  volumes:
+    nekoverse-breeding-cache:
+      driver: local

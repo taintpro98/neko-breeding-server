@@ -2,6 +2,26 @@ version: "1.0"
 services:
   app:
     container_name: app-nekoverse-breeding
+    build: 
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    working_dir: /home/python/app
+    restart: unless-stopped
+    tty: true
+    volumes: 
+      - .:/home/python/app
+    networks:
+      - nekoverse-breeding-network
+    depends_on:
+      - redis
+    ports:
+      - 4000:5000
+    environment:
+      FLASK_APP: run.py
+      FLASK_ENV: development
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      PORT: 5000
 
   redis:
     container_name: redis-nekoverse-breeding
@@ -9,16 +29,17 @@ services:
     restart: unless-stopped
     ports:
       - 6379:6379
-    command: redis-server --save 20 1 --loglevel warning
+    # command: redis-server --save 20 1 --loglevel warning
+    command: redis-server
     networks:
       - nekoverse-breeding-network
     volumes:
       - nekoverse-breeding-cache:/data
   
-  networks:
-    nekoverse-breeding-network:
-      driver: bridge
+networks:
+  nekoverse-breeding-network:
+    driver: bridge
 
-  volumes:
-    nekoverse-breeding-cache:
-      driver: local
+volumes:
+  nekoverse-breeding-cache:
+    driver: local

@@ -9,11 +9,10 @@ from time import strftime
 
 @app.route("/", methods=["GET"])
 def ping():
-    return "Hello"
+    return "Test asdasd"
 
-@app.route("/add-task", methods=["GET", "POST"])
+@app.route("/add-task", methods=["GET"])
 def add_task():
-
     jobs = q.jobs  # Get a list of jobs in the queue
     message = None
 
@@ -29,4 +28,4 @@ def add_task():
 
         message = f"Task queued at {task.enqueued_at.strftime('%a, %d %b %Y %H:%M:%S')}. {q_len} jobs queued"
 
-    return render_template("add_task.html", message=message, jobs=jobs)
+    return message 

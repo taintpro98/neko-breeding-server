@@ -1,14 +1,13 @@
-FROM python:3.6
+FROM node:16.13.2
 
-RUN mkdir -p /home/python/app 
-# && chown -R python:python /home/python/app
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
-WORKDIR /home/python/app
+WORKDIR /home/node/app
 
-COPY requirement.txt ./
+COPY --chown=node:node package*.json ./
 
-USER root
+USER node
 
-RUN pip install -r requirement.txt
+RUN npm install --verbose
 
-COPY . .
+COPY --chown=node:node . .

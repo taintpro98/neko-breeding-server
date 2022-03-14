@@ -1,6 +1,0 @@
-flask
-redis
-rq
-beautifulsoup4
-lxml
-flask_cors

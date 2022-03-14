@@ -1,46 +1,52 @@
-version: "1.0"
+version: "3.8"
 services:
   app:
     container_name: app-nekoverse-breeding
     build: 
       context: ./
       dockerfile: ./docker/Dockerfile
-    working_dir: /home/python/app
-    command: python run.py
+    working_dir: /home/node/app
+    command: npm start
     restart: unless-stopped
     tty: true
     volumes: 
-      - .:/home/python/app
+      - .:/home/node/app
+      - /home/node/app/node_modules
     networks:
       - nekoverse-breeding-network
     depends_on:
-      - redis
+      - database
     ports:
-      - 5000:5000
+      - 5000:3000
     environment:
-      FLASK_APP: run.py
-      FLASK_ENV: development
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      PORT: 5000
+      APP_ENV: dev
+      PORT: 3000
+      DB_HOST: database
+      DB_DATABASE: nekobreeding
+      DB_USERNAME: root
+      DB_PASSWORD: 1234
+      DB_PORT: 5432
 
-  redis:
-    container_name: redis-nekoverse-breeding
-    image: redis
+  database:
+    container_name: postgres-nekoverse-breeding
+    image: postgres:14.1
     restart: unless-stopped
+    volumes:
+      - nekoverse-breeding-database:/var/lib/postgres
+      - ./docker/postgres:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_DB: nekobreeding
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
     ports:
-      - 6379:6379
-    # command: redis-server --save 20 1 --loglevel warning
-    command: redis-server
+      - 5432:5432
     networks:
       - nekoverse-breeding-network
-    volumes:
-      - nekoverse-breeding-cache:/data
   
 networks:
   nekoverse-breeding-network:
     driver: bridge
 
 volumes:
-  nekoverse-breeding-cache:
+  nekoverse-breeding-database:
     driver: local

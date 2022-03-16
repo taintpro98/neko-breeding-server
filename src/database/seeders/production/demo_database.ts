@@ -1,31 +1,33 @@
 import { Knex } from "knex";
 import { v4 as uuidv4 } from "uuid";
+import csv from 'csv-parser';
+import fs from 'fs';
+import path from "path";
 
-let csvFile = "./demo.csv";
+let csvFile = path.resolve(__dirname, "demo.csv");
+let breeding_nekos: any[] = [];
+
+fs.createReadStream(csvFile)
+  .pipe(csv())
+  .on('data', (row: any) => {
+    breeding_nekos.push({
+        id: uuidv4(),
+        name: "Neko-" + `${row.id}`,
+        json_data: JSON.parse(row.trait_id_json),
+        status: 0,
+        file_path: ""
+    });
+  })
+  .on('end', () => {
+    console.log('CSV file successfully processed');
+  });
 
 async function create_breeding_nekos(knex: Knex): Promise<void>{
     console.log("create breeding nekos table");
     await knex("breeding_nekos").del();
-    return await knex("breeding_nekos").insert([
-        {id: 1, name: "Neko-1", json_data: {
-            "body":493,
-            "background":502,
-            "ear":510,
-            "nose":512,
-            "eye":518,
-            "eyebrow":522,
-            "medal":525,
-            "necklaces":533,
-            "top":541,
-            "front face":548,
-            "arms":556,
-            "accessories":564,
-            "back":570,
-            "side face":576
-        }}
-    ])
+    return await knex("breeding_nekos").insert(breeding_nekos);
 }
 
 export async function seed(knex: Knex): Promise<void>{
-
+    await create_breeding_nekos(knex);
 }

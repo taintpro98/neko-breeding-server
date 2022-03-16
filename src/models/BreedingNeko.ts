@@ -24,3 +24,5 @@ class BreedingNeko extends Model{
 }
 
 const BreedingNekoModel = BreedingNeko.bindKnex(db);
+
+export default BreedingNekoModel;

@@ -2,7 +2,7 @@ import { checkBreedingDatabaseConnection } from "./configs/database";
 import BreedingServer from "./BreedingServer";
 
 async function bootstrap() {
-    checkBreedingDatabaseConnection();
+    await checkBreedingDatabaseConnection();
 }
 
 function init() {

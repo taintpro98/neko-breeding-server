@@ -33,18 +33,18 @@ const config: { [key: string]: K.Config} = {
     }
 }
 
-const db = process.env.APP_ENV !== "production" ? KnexLogger(Knex(config.production)) : Knex(config.production);
+// const db = process.env.APP_ENV !== "production" ? KnexLogger(Knex(config.production)) : Knex(config.production);
+const db = Knex(config.production)
 
 export async function checkBreedingDatabaseConnection(){
     try{
         await db.raw("select 1+1 as result");
         console.log(
-            "Connection has been established successfully. (battle database)"
+            "Connection has been established successfully. (breeding database)"
         )
     } catch (error){
-        console.error("Unable to connect to the database: (battle database)", error);
+        console.error("Unable to connect to the database: (breeding database)", error);
     }
-    console.log("Connection has been established successfully");
 }
 
 export { db };

@@ -24,7 +24,8 @@ export default class BreedingQueueController {
         res.status(200).send({name: name, data:JSON.stringify(data)});
     }
 
-    public async uploadImage(){
-        
+    public async uploadImage(req: Request, res: Response){
+        console.log(req.file, req.body);
+        res.status(200).json(true);
     }
 }

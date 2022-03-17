@@ -5,7 +5,7 @@ export async function up(knex: Knex): Promise<void> {
         table.uuid("id").notNullable().primary();
         table.string("name").notNullable();
         table.json("json_data").notNullable();
-        table.integer("status").notNullable();
+        table.string("status").notNullable();
         table.string("file_path").notNullable();
 
         table.timestamp("created_at").defaultTo(knex.fn.now());

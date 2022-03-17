@@ -1,3 +1,3 @@
 export declare type BreedingNekoFilter = {
-    status?: number[]
+    status?: string[]
 }

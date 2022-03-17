@@ -14,7 +14,7 @@ fs.createReadStream(csvFile)
         id: uuidv4(),
         name: "Neko-" + `${row.id}`,
         json_data: JSON.parse(row.trait_id_json),
-        status: 0,
+        status: 'PENDING',
         file_path: ""
     });
   })

@@ -11,6 +11,9 @@ export class BreedingNekoRepository extends Repository<typeof BreedingNeko>{
     }
 
     static queryFilter(query: AnyQueryBuilder, filter: BreedingNekoFilter): AnyQueryBuilder{
+        if(filter?.status){
+            query = query.whereIn("breeding_nekos.status", filter.status);
+        }
         return query;
     }
 

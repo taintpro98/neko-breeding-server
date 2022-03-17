@@ -6,10 +6,10 @@ class BreedingNeko extends Model{
     id!: string;
     name!: string;
     json_data!: object;
-    status!: number;
+    status!: string;
     file_path!: string;
 
-    static tableName = "";
+    static tableName = "breeding_nekos";
 
     static jsonSchema = {
         type: "object",
@@ -17,7 +17,7 @@ class BreedingNeko extends Model{
             id: {type: "string", default: uuidv4()},
             name: {type: "string", minLength: 1, maxLength: 255},
             json_data: {type: "object"},
-            status: {type: "integer"},
+            status: {type: "string"},
             file_path: {type: "string", minLength: 1, maxLength: 255}
         }
     }

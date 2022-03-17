@@ -34,7 +34,7 @@ const config: { [key: string]: K.Config} = {
 }
 
 // const db = process.env.APP_ENV !== "production" ? KnexLogger(Knex(config.production)) : Knex(config.production);
-const db = Knex(config.production)
+const db = Knex(config.production) 
 
 export async function checkBreedingDatabaseConnection(){
     try{
@@ -42,6 +42,7 @@ export async function checkBreedingDatabaseConnection(){
         console.log(
             "Connection has been established successfully. (breeding database)"
         )
+        
     } catch (error){
         console.error("Unable to connect to the database: (breeding database)", error);
     }

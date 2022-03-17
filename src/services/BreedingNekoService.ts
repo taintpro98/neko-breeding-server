@@ -19,6 +19,12 @@ export class BreedingNekoService {
             status: [EBreedingNekoStatus.PENDING]
         }
         const pendingBreedingNekos = await this.list(filter);
-        return pendingBreedingNekos[0];
+        const pendingBreedingNeko = pendingBreedingNekos[0];
+        const updatedStatusBreedingNeko = {
+            ...pendingBreedingNeko,
+            status: EBreedingNekoStatus.RENDERING
+        }
+        await this.breedingNekoRepository.updateById(pendingBreedingNeko.id, updatedStatusBreedingNeko);
+        return pendingBreedingNeko;
     }
 }

@@ -22,7 +22,7 @@ import express, { Request, Response } from "express";
 
 export default class BreedingQueueController {
     private breedingNekoService = new BreedingNekoService();
-    public async getLastPendingBreedingNeko(req: Request, res: Response) {
+    public async getFirstPendingBreedingNeko(req: Request, res: Response) {
         const firstPendingBreedingNeko = await this.breedingNekoService.getFirstPendingBreedingNeko();
         res.status(200).send({name: firstPendingBreedingNeko.name, data:JSON.stringify(firstPendingBreedingNeko.json_data)});
     }

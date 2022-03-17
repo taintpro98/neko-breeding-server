@@ -7,7 +7,7 @@ class BreedingNeko extends Model{
     name!: string;
     json_data!: object;
     status!: string;
-    file_path!: string;
+    file_path?: string;
 
     static tableName = "breeding_nekos";
 
@@ -18,7 +18,7 @@ class BreedingNeko extends Model{
             name: {type: "string", minLength: 1, maxLength: 255},
             json_data: {type: "object"},
             status: {type: "string"},
-            file_path: {type: "string", minLength: 1, maxLength: 255}
+            file_path: {type: "string"}
         }
     }
 }

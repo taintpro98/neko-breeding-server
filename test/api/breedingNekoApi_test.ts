@@ -13,8 +13,8 @@ const HOST = `http://localhost:${5000}`;
 describe("breedingNekoApi", () => {
     it("Get Breeding Neko and Update Status", (done) => {
         chai.request(HOST).get("/get").end((err, res) => {
-            console.log("Response", res)
-            expect(res.status).should.be.eql(200);
+            console.log("response", res.body)
+            expect(res.status).to.be.eql(400);
             done();
         });
     })

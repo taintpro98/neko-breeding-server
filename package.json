@@ -12,7 +12,7 @@
     "seed": "npm run knex:run -- --env=production seed:run --",
     "seed:neko": "npm run knex:run -- --env=production seed:run --specific=update_neko_info.ts",
     "test:service": "mocha --require ts-node/register test/service/**_test.ts --exit --timeout 15000 -r tsconfig-paths/register",
-    "test:api": "mocha --require ts-node/register test/api/**_test.ts --exit --timeout 15000 -r tsconfig-paths/register"
+    "test:api": "mocha --require ts-node/register test/api/**_test.ts --exit --timeout 2000 -r tsconfig-paths/register"
   },
   "repository": {
     "type": "git",

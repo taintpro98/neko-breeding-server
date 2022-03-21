@@ -22,13 +22,20 @@ import express, { Request, Response } from "express";
 
 export default class BreedingQueueController {
     private breedingNekoService = new BreedingNekoService();
-    public async getFirstPendingBreedingNeko(req: Request, res: Response) {
-        const firstPendingBreedingNeko = await this.breedingNekoService.getFirstPendingBreedingNeko();
-        res.status(200).send({name: firstPendingBreedingNeko.name, data:JSON.stringify(firstPendingBreedingNeko.json_data)});
+    public async getFirstBreedingNeko(req: Request, res: Response) {
+        const firstBreedingNeko = await this.breedingNekoService.getFirstBreedingNeko();
+        if (firstBreedingNeko) {
+            res.status(200).send({
+                id: firstBreedingNeko.id,
+                name: firstBreedingNeko.name,
+                data: JSON.stringify(firstBreedingNeko.json_data)
+            });
+        }
+        else res.status(400).send();
     }
 
-    public async uploadImage(req: Request, res: Response){
-        console.log(req.file, req.body);
+    public async uploadImage(req: Request, res: Response) {
+        await this.breedingNekoService.uploadImage(req.body.id);
         res.status(200).json(true);
     }
 }

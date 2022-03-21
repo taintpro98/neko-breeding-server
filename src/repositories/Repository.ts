@@ -23,6 +23,11 @@ export abstract class Repository<T extends typeof Model> {
         }
     }
 
+    async findById(id: number | string): Promise<T['prototype']> {
+        const result = await this.model.query().findById(id);
+        return result;
+    }
+
     async updateById(id: number | string, data: any): Promise<T["prototype"]> {
         const result = await this.model.query().updateAndFetchById(id, data);
         return result;

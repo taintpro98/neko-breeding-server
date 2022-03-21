@@ -1,5 +1,5 @@
 export type SBreedingNeko = {
-    id: string;
-    name: string;
-    json_data: object;
+    id?: string;
+    name?: string;
+    json_data?: object;
 }

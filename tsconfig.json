@@ -1,20 +1,66 @@
 {
   "compilerOptions": {
+    "outDir": "build",
     "target": "es6",
     "module": "commonjs",
     "strict": true,
     "allowJs": true,
     "strictNullChecks": false,
     "esModuleInterop": true,
-    "lib": ["es6"],
-    "types": ["mocha"],
+    "lib": [
+      "es6"
+    ],
+    "types": [
+      "mocha"
+    ],
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@n-services/*": [
+        "services/*"
+      ],
+      "@n-services": [
+        "services/index"
+      ],
+      "@n-repositories/*": [
+        "repositories/*"
+      ],
+      "@n-repositories": [
+        "repositories/index"
+      ],
+      "@n-constants/*": [
+        "constants/*"
+      ],
+      "@n-models": [
+        "models/index"
+      ],
+      "@n-models/*": [
+        "models/*"
+      ],
+      "@n-configs/*": [
+        "configs/*"
+      ],
+      "@n-types/*": [
+        "types/*"
+      ],
+      "@n-database/*": [
+        "database/*"
+      ],
+      "@n-controllers/*": [
+        "controllers/*"
+      ],
+      "@n-controllers": [
+        "controllers/index"
+      ],
+      "@n-routes/*": [
+        "routes/*"
+      ],
+    }
   },
   "include": [
     "src"

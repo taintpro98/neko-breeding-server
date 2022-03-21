@@ -1,9 +1,8 @@
-import { SAVING_IMAGES_FOLDER } from './../constants/images';
-import { BreedingNekoFilter } from 'types/filters/BreedingNekoFilter';
-import { BreedingNekoRepository } from "repositories/BreedingNekoRepository";
+import { SAVING_IMAGES_FOLDER } from '@n-constants/images';
+import { BreedingNekoFilter } from '@n-types/filters/BreedingNekoFilter';
+import { BreedingNekoRepository } from "@n-repositories";
 import { SBreedingNeko } from "./types/SBreedingNeko";
-import { EBreedingNekoStatus } from 'constants/enums';
-import BreedingNeko from 'models/BreedingNeko';
+import { EBreedingNekoStatus } from '@n-constants/enums';
 import path from "path";
 
 export class BreedingNekoService {

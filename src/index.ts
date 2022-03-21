@@ -1,4 +1,4 @@
-import { checkBreedingDatabaseConnection } from "./configs/database";
+import { checkBreedingDatabaseConnection } from "@n-configs/database";
 import BreedingServer from "./BreedingServer";
 
 async function bootstrap() {

@@ -39,6 +39,17 @@
     "tsconfig-paths": "^3.14.0",
     "typescript": "^4.6.2"
   },
+  "_moduleAliases": {
+    "@n-services": "build/src/services",
+    "@n-repositories": "build/src/repositories",
+    "@n-constants": "build/src/constants",
+    "@n-models": "build/src/models",
+    "@n-configs": "build/src/configs",
+    "@n-types": "build/src/types",
+    "@n-database": "build/src/database",
+    "@n-controllers": "build/src/controllers",
+    "@n-routes": "build/src/routes"
+  },
   "dependencies": {
     "@types/multer": "^1.4.7",
     "@types/uuid": "^8.3.4",
@@ -49,6 +60,7 @@
     "express": "^4.17.3",
     "helmet": "^5.0.2",
     "knex": "^1.0.4",
+    "module-alias": "^2.2.2",
     "multer": "^1.4.4",
     "objection": "^3.0.1",
     "pg": "^8.7.3",

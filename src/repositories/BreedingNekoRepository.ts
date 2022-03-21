@@ -1,8 +1,7 @@
-import { BreedingNeko } from "models";
+import { BreedingNeko } from "@n-models";
 import { AnyQueryBuilder } from "objection";
 import { Repository } from "./Repository";
-import { BreedingNekoFilter } from "types/filters/BreedingNekoFilter";
-import { EBreedingNekoStatus } from "constants/enums";
+import { BreedingNekoFilter } from "@n-types/filters/BreedingNekoFilter";
 export class BreedingNekoRepository extends Repository<typeof BreedingNeko>{
 
     initializeModel(): typeof BreedingNeko {

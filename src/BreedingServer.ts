@@ -2,14 +2,15 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 
-import {RegisterRoutes} from './routes/routes';
+// import { RegisterRoutes } from '@n-routes/route';
+import { RegisterRoutes } from '@n-routes/routes';
 
 dotenv.config();
 
-export default class BreedingServer{
+export default class BreedingServer {
     private app: express.Application;
     private readonly port: number;
-    constructor(port: number = Number(process.env.PORT)){
+    constructor(port: number = Number(process.env.PORT)) {
         this.app = express();
         this.port = port;
 
@@ -17,16 +18,16 @@ export default class BreedingServer{
         this.initializeRoutes();
     }
 
-    private initializeMiddlewares(){
+    private initializeMiddlewares() {
         this.app.use(cors());
         this.app.use(express.json());
     }
 
-    private initializeRoutes(){
+    private initializeRoutes() {
         RegisterRoutes(this.app);
     }
 
-    public start(){
+    public start() {
         const server = this.app.listen(this.port, () => {
             console.log("Breeding Server listen at: " + this.port);
         });
